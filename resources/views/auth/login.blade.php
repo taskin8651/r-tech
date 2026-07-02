@@ -1,106 +1,70 @@
-@extends('layouts.app')
+@extends('layouts.frontend')
+
+@section('title', 'Login | R Tech Computer')
+@section('meta_description', 'Login to R Tech Computer student or admin dashboard to access courses, profile, certificates and course management.')
+@section('meta_keywords', 'R Tech Computer login, student login, admin login, online course login')
+
 @section('content')
-
-<div class="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-
-    <div class="w-full max-w-md bg-white border border-gray-200 rounded-lg shadow-sm">
-
-        {{-- HEADER --}}
-        <div class="px-8 pt-8 pb-4 text-center">
-            <h1 class="text-2xl font-semibold text-gray-900">
-                {{ trans('panel.site_title') }}
-            </h1>
-            <p class="text-sm text-gray-500 mt-1">
-                {{ trans('global.login') }}
-            </p>
+<section class="auth-page">
+    <div class="wrap auth-shell">
+        <div class="auth-copy">
+            <div>
+                <span class="eyebrow">Secure Access</span>
+                <h1>Continue your computer learning journey.</h1>
+                <p class="muted">Login to open your student dashboard, continue enrolled courses, manage profile details and view uploaded certificates.</p>
+            </div>
+            <div class="auth-stat-grid">
+                <div class="auth-stat"><strong>Admin</strong><span class="muted">Course control</span></div>
+                <div class="auth-stat"><strong>Student</strong><span class="muted">Learning panel</span></div>
+                <div class="auth-stat"><strong>Verify</strong><span class="muted">Certificate records</span></div>
+            </div>
         </div>
 
-        {{-- INFO MESSAGE --}}
-        @if(session('message'))
-            <div class="mx-8 mb-4 px-4 py-2 text-sm rounded-md
-                        bg-blue-50 text-blue-700 border border-blue-200">
-                {{ session('message') }}
-            </div>
-        @endif
-
-        {{-- FORM --}}
-        <form method="POST" action="{{ route('login') }}" class="px-8 pb-8 space-y-5">
-            @csrf
-
-            {{-- EMAIL --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    {{ trans('global.login_email') }}
-                </label>
-                <input type="email"
-                       name="email"
-                       value="{{ old('email') }}"
-                       required
-                       autofocus
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('email') ? 'border-red-500' : 'border-gray-300' }}">
-                @if($errors->has('email'))
-                    <p class="mt-1 text-xs text-red-600">
-                        {{ $errors->first('email') }}
-                    </p>
-                @endif
+        <div class="auth-card">
+            <div class="auth-brand">
+                <div class="auth-mark">RT</div>
+                <div>
+                    <p class="auth-title">Login</p>
+                    <p class="muted" style="margin:6px 0 0">Access your dashboard</p>
+                </div>
             </div>
 
-            {{-- PASSWORD --}}
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    {{ trans('global.login_password') }}
-                </label>
-                <input type="password"
-                       name="password"
-                       required
-                       class="w-full px-3 py-2 border rounded-md text-sm
-                              focus:ring-2 focus:ring-blue-500 focus:border-blue-500
-                              {{ $errors->has('password') ? 'border-red-500' : 'border-gray-300' }}">
-                @if($errors->has('password'))
-                    <p class="mt-1 text-xs text-red-600">
-                        {{ $errors->first('password') }}
-                    </p>
-                @endif
+            @if(session('message'))
+                <div class="alert">{{ session('message') }}</div>
+            @endif
+
+            <form method="POST" action="{{ route('login') }}" class="auth-form">
+                @csrf
+
+                <div class="auth-field">
+                    <label>{{ trans('global.login_email') }}</label>
+                    <input type="email" name="email" value="{{ old('email') }}" required autofocus placeholder="student@example.com">
+                    @if($errors->has('email'))<div class="auth-error">{{ $errors->first('email') }}</div>@endif
+                </div>
+
+                <div class="auth-field">
+                    <label>{{ trans('global.login_password') }}</label>
+                    <input type="password" name="password" required placeholder="Enter password">
+                    @if($errors->has('password'))<div class="auth-error">{{ $errors->first('password') }}</div>@endif
+                </div>
+
+                <div class="auth-row">
+                    <label class="auth-check">
+                        <input type="checkbox" name="remember">
+                        {{ trans('global.remember_me') }}
+                    </label>
+                    @if(Route::has('password.request'))
+                        <a class="auth-link" href="{{ route('password.request') }}">{{ trans('global.forgot_password') }}</a>
+                    @endif
+                </div>
+
+                <button type="submit" class="btn primary auth-submit">{{ trans('global.login') }}</button>
+            </form>
+
+            <div class="auth-switch">
+                New student? <a class="auth-link" href="{{ route('register') }}">Create account</a>
             </div>
-
-            {{-- REMEMBER + FORGOT --}}
-            <div class="flex items-center justify-between">
-                <label class="flex items-center gap-2 text-sm text-gray-600">
-                    <input type="checkbox"
-                           name="remember"
-                           class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                    {{ trans('global.remember_me') }}
-                </label>
-
-                @if(Route::has('password.request'))
-                    <a href="{{ route('password.request') }}"
-                       class="text-sm text-blue-600 hover:underline">
-                        {{ trans('global.forgot_password') }}
-                    </a>
-                @endif
-            </div>
-
-            {{-- LOGIN BUTTON --}}
-            <div class="pt-2">
-                <button type="submit"
-                        class="w-full py-2.5 bg-blue-600 text-white text-sm font-medium
-                               rounded-md hover:bg-blue-700 transition">
-                    {{ trans('global.login') }}
-                </button>
-            </div>
-
-            {{-- REGISTER LINK --}}
-            <div class="text-center pt-2">
-                <a href="{{ route('register') }}"
-                   class="text-sm text-blue-600 hover:underline">
-                    {{ trans('global.register') }}
-                </a>
-            </div>
-
-        </form>
+        </div>
     </div>
-</div>
-
+</section>
 @endsection

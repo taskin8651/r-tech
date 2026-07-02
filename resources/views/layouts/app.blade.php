@@ -22,6 +22,7 @@
 </head>
 
 <body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    @include('partials.page-loader')
 
     {{-- LOGIN CARD --}}
     <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6">

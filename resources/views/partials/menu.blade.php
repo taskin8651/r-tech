@@ -38,6 +38,29 @@
             <span class="nav-label">{{ trans('global.dashboard') }}</span>
         </a>
 
+        @can('course_access')
+            <a href="{{ route('admin.courses.index') }}"
+               data-tooltip="Courses"
+               class="nav-link {{ request()->is('admin/courses*') ? 'active' : '' }}">
+                <i class="fas fa-graduation-cap nav-icon"></i>
+                <span class="nav-label">Courses</span>
+            </a>
+
+            <a href="{{ route('admin.enrollments.index') }}"
+               data-tooltip="Enrollments"
+               class="nav-link {{ request()->is('admin/enrollments*') ? 'active' : '' }}">
+                <i class="fas fa-user-graduate nav-icon"></i>
+                <span class="nav-label">Enrollments</span>
+            </a>
+
+            <a href="{{ route('admin.enquiries.index') }}"
+               data-tooltip="Enquiries"
+               class="nav-link {{ request()->is('admin/enquiries*') ? 'active' : '' }}">
+                <i class="fas fa-message nav-icon"></i>
+                <span class="nav-label">Enquiries</span>
+            </a>
+        @endcan
+
         {{-- USER MANAGEMENT GROUP --}}
         @can('user_management_access')
             @php
@@ -125,9 +148,9 @@
         @endif
 
         {{-- Settings --}}
-        <a href="#"
+        <a href="{{ route('admin.settings.edit') }}"
            data-tooltip="Settings"
-           class="nav-link">
+           class="nav-link {{ request()->is('admin/settings*') ? 'active' : '' }}">
             <i class="fas fa-cog nav-icon"></i>
             <span class="nav-label">Settings</span>
         </a>

@@ -39,6 +39,7 @@
 </head>
 
 <body>
+@include('partials.page-loader')
 
 <div class="admin-layout">
 
