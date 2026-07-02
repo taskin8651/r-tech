@@ -86,4 +86,4 @@
     </div>
 </div>
 
-<script src="{{ asset('js/page-loader.js') }}?v=20260702" defer></script>
+<script src="{{ asset('js/page-loader.js') }}?v=20260702f" defer></script>

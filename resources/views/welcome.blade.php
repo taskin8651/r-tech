@@ -7,7 +7,7 @@
     <title>R Tech Computer | Practical Computer Courses</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700|jetbrains-mono:400,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}?v=20260702">
+    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}?v=20260702f">
 </head>
 <body class="landing-page">
     @include('partials.page-loader')
@@ -23,44 +23,44 @@
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <main class="site">
-        <section class="hero">
-            <div class="hero-grid">
-                <div>
-                    <div class="hud reveal">
-                        <span>DCA / Tally / Web</span>
-                        <span>Practical Training</span>
-                        <span>Certificate Courses</span>
-                    </div>
-                    <h1 class="reveal">Practical computer courses for better career skills.</h1>
-                    <p class="hero-copy reveal">
-                        Learn DCA, Tally, MS Office, Web Designing, Typing, Digital Marketing and other job-ready computer skills with structured lessons, practice work and certificate support.
-                    </p>
-                    <div class="hero-actions reveal">
+        <section class="hero hero-carousel" data-hero-carousel>
+            <div class="hero-slide is-active" style="--hero-bg:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1800&q=85')">
+                <div class="hero-content reveal">
+                    <div class="hud"><span>DCA / ADCA</span><span>Practical Training</span><span>Certificate Support</span></div>
+                    <h1>Build career-ready computer skills with R Tech Computer.</h1>
+                    <p class="hero-copy">Learn computer fundamentals, MS Office, internet work and practical assignments with a clear syllabus and guided course flow.</p>
+                    <div class="hero-actions">
                         <a class="btn primary magnetic" href="{{ route('courses.index') }}">Explore Courses</a>
-                        <a class="btn magnetic" href="{{ route('enquiry.create') }}">Send Enquiry</a>
+                        <a class="btn magnetic" href="{{ route('enquiry.create') }}">Admission Enquiry</a>
                     </div>
                 </div>
-                <div class="stage" aria-label="Animated platform preview">
-                    <div class="orbit"></div>
-                    <div class="device tilt">
-                        <div class="device-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div>
-                        <div class="dash-grid">
-                            <div class="dash-card"><strong>DCA</strong><span>Computer fundamentals and office work</span><div class="bar"><i></i></div></div>
-                            <div class="dash-card"><strong>Tally</strong><span>Accounting, GST and reports</span><div class="bar"><i></i></div></div>
-                            <div class="dash-card"><strong>Web</strong><span>HTML, CSS and responsive pages</span><div class="bar"><i></i></div></div>
-                            <div class="dash-card"><strong>MS</strong><span>Word, Excel, PowerPoint and internet</span><div class="bar"><i></i></div></div>
-                        </div>
+            </div>
+            <div class="hero-slide" style="--hero-bg:url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1800&q=85')">
+                <div class="hero-content">
+                    <div class="hud"><span>Tally Prime</span><span>GST Billing</span><span>Accounting Practice</span></div>
+                    <h1>Learn accounting workflows used in real businesses.</h1>
+                    <p class="hero-copy">Practice ledger, voucher, invoice, GST and reports with structured Tally course content for job and business needs.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary magnetic" href="{{ route('courses.index') }}">View Tally Course</a>
+                        <a class="btn magnetic" href="{{ route('contact') }}">Contact Institute</a>
                     </div>
-                    <div class="certificate tilt" id="certificate">
-                        <div class="eyebrow">Course Certificate</div>
-                        <h3>Uploaded Certificate</h3>
-                        <div class="cert-line"></div>
-                        <div class="cert-line short"></div>
-                        <div class="hud" style="margin:16px 0 0"><span>Public Verify</span><span>Course Record</span></div>
-                    </div>
-                    <div class="mini-card one"><div class="tag">Practice</div><strong>Projects</strong><br><span>Assignments and tasks</span></div>
-                    <div class="mini-card two"><div class="tag">Career</div><strong>Skills</strong><br><span>Office-ready learning</span></div>
                 </div>
+            </div>
+            <div class="hero-slide" style="--hero-bg:url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=85')">
+                <div class="hero-content">
+                    <div class="hud"><span>Web Designing</span><span>Digital Skills</span><span>Projects</span></div>
+                    <h1>Create websites, digital work and modern computer projects.</h1>
+                    <p class="hero-copy">Start with HTML, CSS, responsive layouts, typing, digital tools and project-based learning for practical confidence.</p>
+                    <div class="hero-actions">
+                        <a class="btn primary magnetic" href="{{ route('courses.index') }}">Browse All Courses</a>
+                        <a class="btn magnetic" href="{{ route('certificates.verify') }}">Verify Certificate</a>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-carousel-ui">
+                <button type="button" class="slider-btn" data-hero-prev aria-label="Previous slide">&lsaquo;</button>
+                <div class="hero-carousel-dots" data-hero-dots></div>
+                <button type="button" class="slider-btn" data-hero-next aria-label="Next slide">&rsaquo;</button>
             </div>
         </section>
 
@@ -207,6 +207,6 @@
     </main>
     @include('partials.frontend-footer')
 
-    <script src="{{ asset('js/frontend.js') }}?v=20260702" defer></script>
+    <script src="{{ asset('js/frontend.js') }}?v=20260702f" defer></script>
 </body>
 </html>

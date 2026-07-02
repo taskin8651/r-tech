@@ -20,20 +20,20 @@
                 <span class="eyebrow">Menu</span>
                 <strong>{{ $siteSettings->site_name }}</strong>
             </div>
-            <a href="{{ route('landing') }}">Home</a>
-            <a href="{{ route('about') }}">About</a>
-            <a href="{{ route('courses.index') }}">Courses</a>
-            <a href="{{ route('enquiry.create') }}">Enquiry</a>
-            <a href="{{ route('contact') }}">Contact</a>
-            <a href="{{ route('certificates.verify') }}">Verify Certificate</a>
+            <a class="site-nav-link mobile-tab" href="{{ route('landing') }}"><span class="site-nav-icon">H</span><span>Home</span></a>
+            <a class="site-nav-link desktop-only" href="{{ route('about') }}">About</a>
+            <a class="site-nav-link mobile-tab" href="{{ route('courses.index') }}"><span class="site-nav-icon">C</span><span>Courses</span></a>
+            <a class="site-nav-link mobile-tab is-center" href="{{ route('enquiry.create') }}"><span class="site-nav-icon">+</span><span>Enquiry</span></a>
+            <a class="site-nav-link desktop-only" href="{{ route('contact') }}">Contact</a>
+            <a class="site-nav-link mobile-tab" href="{{ route('certificates.verify') }}"><span class="site-nav-icon">V</span><span>Verify</span></a>
             @auth
-                <a href="{{ route(auth()->user()->is_admin ? 'admin.home' : 'student.dashboard') }}">Dashboard</a>
+                <a class="site-nav-link mobile-tab" href="{{ route(auth()->user()->is_admin ? 'admin.home' : 'student.dashboard') }}"><span class="site-nav-icon">D</span><span>Panel</span></a>
                 @unless(auth()->user()->is_admin)
-                    <a href="{{ route('student.profile.show') }}">Profile</a>
+                    <a class="site-nav-link desktop-only" href="{{ route('student.profile.show') }}">Profile</a>
                 @endunless
             @else
-                <a href="{{ route('login') }}">Login</a>
-                <a href="{{ route('register') }}">Register</a>
+                <a class="site-nav-link mobile-tab" href="{{ route('login') }}"><span class="site-nav-icon">U</span><span>Login</span></a>
+                <a class="site-nav-link desktop-only" href="{{ route('register') }}">Register</a>
             @endauth
             <div class="site-mobile-menu-actions">
                 <a class="btn primary" href="{{ route('courses.index') }}">Explore Courses</a>

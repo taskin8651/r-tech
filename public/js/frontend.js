@@ -63,6 +63,67 @@
         });
     }
 
+    document.querySelectorAll('[data-hero-carousel]').forEach(function (carousel) {
+        const slides = Array.from(carousel.querySelectorAll('.hero-slide'));
+        const dotsWrap = carousel.querySelector('[data-hero-dots]');
+        const previous = carousel.querySelector('[data-hero-prev]');
+        const next = carousel.querySelector('[data-hero-next]');
+        let current = 0;
+        let timer = null;
+
+        if (!slides.length || !dotsWrap) return;
+
+        function renderDots() {
+            dotsWrap.innerHTML = '';
+            slides.forEach(function (_, index) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.setAttribute('aria-label', 'Go to hero slide ' + (index + 1));
+                dot.addEventListener('click', function () {
+                    current = index;
+                    update();
+                    restart();
+                });
+                dotsWrap.appendChild(dot);
+            });
+        }
+
+        function update() {
+            slides.forEach(function (slide, index) {
+                slide.classList.toggle('is-active', index === current);
+            });
+            dotsWrap.querySelectorAll('button').forEach(function (dot, index) {
+                dot.classList.toggle('active', index === current);
+            });
+        }
+
+        function go(direction) {
+            current = (current + direction + slides.length) % slides.length;
+            update();
+        }
+
+        function restart() {
+            window.clearInterval(timer);
+            timer = window.setInterval(function () {
+                go(1);
+            }, 5200);
+        }
+
+        previous?.addEventListener('click', function () {
+            go(-1);
+            restart();
+        });
+
+        next?.addEventListener('click', function () {
+            go(1);
+            restart();
+        });
+
+        renderDots();
+        update();
+        restart();
+    });
+
     document.querySelectorAll('.tilt').forEach(function (card) {
         card.addEventListener('pointermove', function (event) {
             const rect = card.getBoundingClientRect();
