@@ -4,7 +4,7 @@
 
 @section('content')
 <style>
-    .settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.settings-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:20px;margin-bottom:18px}.settings-field label{display:block;font-size:12px;font-weight:800;color:#475569;text-transform:uppercase;margin-bottom:7px}.settings-field input,.settings-field textarea{width:100%;border:1px solid #dbe3ef;border-radius:10px;padding:10px 12px}.settings-field textarea{min-height:120px}@media(max-width:800px){.settings-grid{grid-template-columns:1fr}}
+    .settings-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.settings-card{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:20px;margin-bottom:18px}.settings-field label{display:block;font-size:12px;font-weight:800;color:#475569;text-transform:uppercase;margin-bottom:7px}.settings-field input,.settings-field textarea{width:100%;border:1px solid #dbe3ef;border-radius:10px;padding:10px 12px}.settings-field textarea{min-height:120px}.settings-field .ck-editor__editable{min-height:260px}.settings-field .ck.ck-editor{color:#111827}.settings-field .ck-content ul{list-style:disc;padding-left:22px}.settings-field .ck-content ol{list-style:decimal;padding-left:22px}@media(max-width:800px){.settings-grid{grid-template-columns:1fr}}
 </style>
 
 <div class="admin-page-head">
@@ -57,13 +57,33 @@
 
     <div class="settings-card">
         <h3 class="page-card-title">Policies</h3>
-        <div class="settings-field"><label>Privacy Policy</label><textarea name="privacy_policy">{{ old('privacy_policy', $settings->privacy_policy) }}</textarea></div>
-        <div class="settings-field" style="margin-top:16px"><label>Terms & Conditions</label><textarea name="terms_conditions">{{ old('terms_conditions', $settings->terms_conditions) }}</textarea></div>
-        <div class="settings-field" style="margin-top:16px"><label>Refund Policy</label><textarea name="refund_policy">{{ old('refund_policy', $settings->refund_policy) }}</textarea></div>
+        <div class="settings-field"><label>Privacy Policy</label><textarea class="policy-editor" name="privacy_policy">{{ old('privacy_policy', $settings->privacy_policy) }}</textarea></div>
+        <div class="settings-field" style="margin-top:16px"><label>Terms & Conditions</label><textarea class="policy-editor" name="terms_conditions">{{ old('terms_conditions', $settings->terms_conditions) }}</textarea></div>
+        <div class="settings-field" style="margin-top:16px"><label>Refund Policy</label><textarea class="policy-editor" name="refund_policy">{{ old('refund_policy', $settings->refund_policy) }}</textarea></div>
     </div>
 
     <div style="display:flex;justify-content:flex-end">
         <button class="btn-primary" type="submit"><i class="fas fa-save"></i> Save Settings</button>
     </div>
 </form>
+@endsection
+
+@section('scripts')
+<script>
+    document.querySelectorAll('.policy-editor').forEach(function (editor) {
+        ClassicEditor
+            .create(editor, {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'link',
+                    'bulletedList', 'numberedList',
+                    'blockQuote', '|',
+                    'undo', 'redo'
+                ]
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    });
+</script>
 @endsection

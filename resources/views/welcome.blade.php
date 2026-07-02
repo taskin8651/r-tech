@@ -7,7 +7,7 @@
     <title>R Tech Computer | Practical Computer Courses</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600,700|jetbrains-mono:400,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}?v=20260702f">
+    <link rel="stylesheet" href="{{ asset('css/frontend.css') }}?v=20260702g">
 </head>
 <body class="landing-page">
     @include('partials.page-loader')
@@ -207,6 +207,6 @@
     </main>
     @include('partials.frontend-footer')
 
-    <script src="{{ asset('js/frontend.js') }}?v=20260702f" defer></script>
+    <script src="{{ asset('js/frontend.js') }}?v=20260702g" defer></script>
 </body>
 </html>

@@ -143,6 +143,47 @@ body.menu-open {
     color: var(--ink);
 }
 
+.policy-content {
+    color: var(--muted);
+    line-height: 1.75;
+}
+
+.policy-content h1,
+.policy-content h2,
+.policy-content h3,
+.policy-content h4 {
+    color: var(--ink);
+    margin: 18px 0 10px;
+    line-height: 1.15;
+}
+
+.policy-content p {
+    margin: 0 0 14px;
+}
+
+.policy-content ul,
+.policy-content ol {
+    margin: 0 0 16px 22px;
+    padding: 0;
+}
+
+.policy-content li {
+    margin-bottom: 8px;
+}
+
+.policy-content a {
+    color: var(--mint);
+    font-weight: 800;
+}
+
+.policy-content blockquote {
+    margin: 16px 0;
+    padding: 14px 16px;
+    border-left: 3px solid var(--cyan);
+    background: rgba(255,255,255,.06);
+    border-radius: 8px;
+}
+
 @media (max-width: 1120px) {
     .site-menu-toggle {
         display: block;
