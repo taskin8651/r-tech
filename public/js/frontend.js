@@ -1,37 +1,4 @@
 (function () {
-    document.querySelectorAll('[data-menu-toggle]').forEach(function (toggle) {
-        const menu = toggle.closest('.site-header')?.querySelector('[data-site-menu]');
-        const backdrop = document.querySelector('[data-menu-backdrop]');
-        if (!menu) return;
-
-        function setMenu(open) {
-            menu.classList.toggle('is-open', open);
-            toggle.classList.toggle('is-open', open);
-            backdrop?.classList.toggle('is-open', open);
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-            document.body.classList.toggle('menu-open', open);
-        }
-
-        toggle.addEventListener('click', function () {
-            const isOpen = !menu.classList.contains('is-open');
-            setMenu(isOpen);
-        });
-
-        menu.querySelectorAll('a').forEach(function (link) {
-            link.addEventListener('click', function () {
-                setMenu(false);
-            });
-        });
-
-        backdrop?.addEventListener('click', function () {
-            setMenu(false);
-        });
-
-        document.addEventListener('keydown', function (event) {
-            if (event.key === 'Escape') setMenu(false);
-        });
-    });
-
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', function () {
